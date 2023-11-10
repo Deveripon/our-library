@@ -10,8 +10,9 @@ import {
 } from "../controllers/writerRouteController.js";
 import { writerAvaterUploader } from "../utils/uploader.js";
 import { validateWriterForm } from "../middlewares/formValidation/writerFormValidation.js";
+import { verifyAuthentication } from "../middlewares/common/varifyAuthentication.js";
 const writerRouter = express.Router();
-
+writerRouter.use(verifyAuthentication);
 writerRouter.post("/", writerAvaterUploader, validateWriterForm, createNewWriter);
 writerRouter.get("/", getAllWriter);
 writerRouter.get("/:id", getSingleWriterById);

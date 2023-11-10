@@ -9,8 +9,10 @@ import {
     getSingleCategory,
     getSingleCategoryBySlug,
 } from "../controllers/categoryRouteController.js";
+import { verifyAuthentication } from "../middlewares/common/varifyAuthentication.js";
 
 const categoryRouter = express.Router();
+categoryRouter.use(verifyAuthentication);
 categoryRouter.post("/", validateCategoryForm, createNewCategory);
 categoryRouter.get("/", getAllCategory);
 categoryRouter.get("/:id", getSingleCategory);

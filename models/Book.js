@@ -28,7 +28,7 @@ const bookSchema = new Schema(
         },
         borrowed_by: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: Student,
+            ref: "Student",
         },
         status: {
             type: Boolean,

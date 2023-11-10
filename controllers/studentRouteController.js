@@ -1,12 +1,19 @@
 import asyncHandler from "express-async-handler";
 import { Student } from "../models/Student.js";
 import { generateSlug } from "../helper/slugGenerator.js";
+import { Book } from "../models/Book.js";
 
 //create New Student
 export const createNewStudent = asyncHandler(async (req, res) => {
     const slug = generateSlug(req.body.name);
+    const { borrowed_books } = req.body;
     const data = new Student({ ...req.body, slug });
     await data.save();
+    if (borrowed_books.length > 0) {
+        for (let i = 0; i < borrowed_books.length; i++) {
+            Book.findByIdAndUpdate(borrowed_books[i], { $push: { borrowed_by: data._id } });
+        }
+    }
     res.status(200).json({
         message: req.body.name + " Student Added successfully",
         data,

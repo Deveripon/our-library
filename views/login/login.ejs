@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Log in Our Library</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+            }
+            .main {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .login-form {
+                padding: 50px;
+                background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+                border-radius: 10px;
+            }
+            input {
+                display: block;
+                margin: 10px;
+                padding: 10px;
+                width: 250px;
+                outline: none;
+                border-radius: 5px;
+                border: none;
+                font-size: 18px;
+                color: #00c9ff;
+            }
+            .submit {
+                background: rgb(64, 163, 212);
+                color: #fff;
+                width: 100px;
+                transition: 0.2s;
+                cursor: pointer;
+            }
+            .submit:hover {
+                background: rgb(19, 76, 105);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <form action="/api/v1/auth/login" method="POST" class="login-form">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        name="userinfo"
+                        id="userinfo"
+                        placeholder="Username or Email or Cell" />
+                    <input type="password" placeholder="Password" name="password" id="password" />
+                    <input class="submit" type="submit" value="Login" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

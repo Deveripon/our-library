@@ -10,8 +10,10 @@ import {
 } from "../controllers/bookRouteController.js";
 import { bookCoverPhotoUplaoder } from "../utils/uploader.js";
 import validateForm from "../middlewares/formValidation/bookFormValidation.js";
+import { verifyAuthentication } from "../middlewares/common/varifyAuthentication.js";
 
 const bookRouter = express.Router();
+bookRouter.use(verifyAuthentication);
 bookRouter.post("/", bookCoverPhotoUplaoder, validateForm, createNewBook);
 bookRouter.get("/", getAllBook);
 bookRouter.get("/:id", getSingleBookById);

@@ -1,8 +1,11 @@
 import asyncHandler from "express-async-handler";
 import { User } from "../models/User.js";
+import bcrypt from "bcrypt";
 //create new user
 export const createNewUser = asyncHandler(async (req, res) => {
-    const data = new User({ ...req.body });
+    const { password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const data = new User({ ...req.body, password: hashedPassword });
     await data.save();
     res.status(200).json({
         message: req.body.name + " Student Added successfully",

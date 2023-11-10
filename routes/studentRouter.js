@@ -10,9 +10,10 @@ import {
     getSingleStudent,
     getSingleStudentBySlug,
 } from "../controllers/studentRouteController.js";
+import { verifyAuthentication } from "../middlewares/common/varifyAuthentication.js";
 
 const studentRouter = express.Router();
-
+studentRouter.use(verifyAuthentication);
 studentRouter.post("/", studentAvaterUploader, validateStudentForm, createNewStudent);
 studentRouter.get("/", getAllStudent);
 studentRouter.get("/:id", getSingleStudent);
