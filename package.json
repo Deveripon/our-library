@@ -6,7 +6,8 @@
     "type": "module",
     "scripts": {
         "dev": "NODE_ENV=development nodemon app.js",
-        "production": "NODE_ENV=production node app.js"
+        "production": "NODE_ENV=production node app.js",
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",
